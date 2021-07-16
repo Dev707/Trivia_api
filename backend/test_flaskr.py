@@ -121,8 +121,8 @@ class TriviaTestCase(unittest.TestCase):
 
     def test_post_quiz_in_not_exitst_category(self):
         res = self.client().post('/quizzes',
-                                 json={'previous_questions': [5], 
-                                 'quiz_category': {'type': 'PHP', 'id': '2'}})
+                                 json={'previous_questions': [5],
+                                       'quiz_category': {'type': 'PHP', 'id': '2'}})
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 422)
         self.assertEqual(data['success'], False)

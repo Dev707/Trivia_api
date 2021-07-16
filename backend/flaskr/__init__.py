@@ -194,12 +194,12 @@ def create_app(test_config=None):
             pre_questions = body.get('previous_questions')
             quiz_cat = body.get('quiz_category')
             next_q = None
-            #print(body)
+            # print(body)
             if quiz_cat['id'] == 0:
                 questions = Question.query.all()
             else:
                 questions = Question.query.filter_by(
-                  category=int(quiz_cat.get('id'))).all()
+                    category=int(quiz_cat.get('id'))).all()
             for q in questions:
                 if q.id not in pre_questions:
                     next_q = q
@@ -207,8 +207,8 @@ def create_app(test_config=None):
             if next_q is None:
                 return jsonify({'Success': True, 'question': False})
             return jsonify({
-              'success': True,
-              'question': next_q.format()
+                'success': True,
+                'question': next_q.format()
             })
         except Exception:
             abort(422)
